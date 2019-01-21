@@ -8,3 +8,11 @@
 .invalid {
 	color: #ff0000;
 }
+
+@media only screen and (max-width: 650px) {
+	.imageList {
+		flex-wrap: wrap;
+		width: 100%;
+		height: 100%;
+	}
+}

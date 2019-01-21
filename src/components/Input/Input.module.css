@@ -27,3 +27,11 @@
 	color: #ff0000;
 }
 
+@media only screen and (max-width: 650px) {
+	.inputContainer {
+		flex-wrap: wrap;
+		width: 100%;
+		flex-direction: column;
+	}
+}
+
