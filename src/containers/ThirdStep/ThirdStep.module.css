@@ -1,0 +1,11 @@
+.container {
+	width: 350px;
+}
+
+.buttonsContainer {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	width: 250px;
+}
+
