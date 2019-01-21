@@ -1,0 +1,46 @@
+.selectWrapper {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-between;
+	margin-bottom: 16px;
+	background-color: #fff;
+	box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.37);
+	padding: 12px;
+	border: 1px solid #eee;
+	border-right: 2px;
+	min-width: 250px;
+}
+
+.select {
+	font-family: 'Open Sans', sans-serif;
+	font-size: 15px;
+	border: none;
+	flex: 1;
+}
+
+.select::placeholder {
+	color: #bbb;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 15px;
+}
+
+.selectList {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	margin-bottom: 16px;
+	background-color: #fff;
+	box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.37);
+	min-width: 275px;
+	position: absolute;
+}
+
+.selectListItem {
+	list-style: none;
+	border-bottom: 1px solid #aaa;
+	padding: 12px;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 15px;
+	color: #bbb;
+}

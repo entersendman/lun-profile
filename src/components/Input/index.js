@@ -1,15 +1,18 @@
 import React from 'react';
+import styles from './Input.module.css';
 
-const Input = ({onChange, value, validation, name}) => {
+const Input = ({onChange, value, validation, name, placeholder, type}) => {
   return (
-    <div>
+    <div className={styles.inputContainer}>
       <input
-        type="text"
+        type={type}
         value={value}
         name={name}
-        onChange={onChange(value, name)}
+        onChange={onChange}
+        className={styles.input}
+        placeholder={placeholder}
       />
-      <span>{`-${validation}`}</span>
+      {validation && (<span>{`-${validation}`}</span>)}
     </div>
   );
 };
