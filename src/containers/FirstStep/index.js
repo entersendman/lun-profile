@@ -1,8 +1,18 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
 import Input from '../../components/Input';
-import styles from './FirstStep.module.css';
+import FormLabel from '../../components/FormLabel';
+import Button from '../../components/Button';
+import {KeyboardArrowRight} from '@material-ui/icons';
+import {setUserNameEmail} from '../../actions/setUser';
+import {fetchUser} from '../../actions/fetchUser';
+import {validateEmail} from '../../utils';
 
 class FirstStep extends Component {
+  constructor(props) {
+    super(props);
+    props.fetchUser();
+  }
 
   state = {
     email: '',
@@ -10,47 +20,98 @@ class FirstStep extends Component {
     error: ''
   };
 
-  onChangeInputHandler = (e) => {
-    const {name, value} = e.target;
-    if(name === 'email') {
-      if(!value.includes('@')) {
-        this.setState({
-          error: 'в адресе должен быть символ @'
-        })
-      } else {
-        this.setState({
-          error: ''
-        })
-      }
-    }
+  onChangeEmailInputHandler = (e) => {
+    const {value} = e.target;
     this.setState({
-      [name]: value
+      email: value
+    }, () => this.getErrorText(value))
+  };
+
+  onChangeNameInputHandler = (e) => {
+    const {value} = e.target;
+    this.setState({
+      name: value
     })
   };
+
+  getErrorText = (email) => {
+    const isValid = validateEmail(email);
+    if (!email.includes('@')) {
+      this.setState({
+        error: 'в адресе должен быть символ @'
+      })
+    } else if (!isValid) {
+      this.setState({
+        error: 'Введите корректный email'
+      })
+    } else {
+      this.setState({
+        error: ''
+      })
+    }
+  };
+
+  submitFormHandler = () => {
+    const {name, email, error} = this.state;
+    if (!error.length && name && email) {
+      this.props.setUserNameEmail(name, email);
+      this.props.handleComplete();
+    }
+  };
+
+
+  componentDidMount() {
+    const {user} = this.props;
+
+    if(user.name && user.email) {
+      this.setState({
+        name: user.name,
+        email: user.email
+      })
+    }
+  }
 
   render() {
     const {error} = this.state;
     return (
       <div>
-        <p className={styles.label}>1. Введите имя и e-mail</p>
+        <FormLabel
+          label="1. Введите имя и e-mail"
+        />
         <Input
-          onChange={this.onChangeInputHandler}
+          onChange={this.onChangeNameInputHandler}
           name="name"
           value={this.state.name}
           placeholder="Имя"
           type="text"
         />
         <Input
-          onChange={this.onChangeInputHandler}
+          onChange={this.onChangeEmailInputHandler}
           name="email"
           value={this.state.email}
           placeholder="e-mail"
           type="email"
           validation={error}
         />
+        <Button
+          onClick={this.submitFormHandler}
+        >
+          Следующий
+          <KeyboardArrowRight/>
+        </Button>
       </div>
     );
   }
 }
 
-export default FirstStep;
+const mapStateToProps = state => ({
+  user: state.user
+});
+
+export default connect(
+  mapStateToProps,
+  {
+    setUserNameEmail,
+    fetchUser
+  }
+)(FirstStep);

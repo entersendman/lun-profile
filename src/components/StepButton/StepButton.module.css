@@ -1,1 +1,19 @@
+.stepButton {
+	width: 40px;
+	height: 40px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background: #fff;
+	box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.37);
+	border: 1px solid #eee;
+	margin-right: 15px;
+}
 
+.stepButton:last-child {
+	margin-right: 0;
+}
+
+.completed {
+	color: orange;
+}

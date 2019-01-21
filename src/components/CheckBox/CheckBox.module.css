@@ -1,1 +1,14 @@
+.checkboxContainer {
+	display: flex;
+	flex-direction: row;
+	min-width: 250px;
+	align-items: center;
+	margin-bottom: 15px;
+}
 
+.checboxLabel {
+	margin: 0 16px;
+	font-family: 'Open Sans', sans-serif;
+	font-size: 15px;
+	color: #aaa;
+}

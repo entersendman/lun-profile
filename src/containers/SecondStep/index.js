@@ -1,10 +1,23 @@
 import React, {Component} from 'react';
 import Select from '../../components/Select';
 import countries from '../../mock/countries';
+import FormLabel from '../../components/FormLabel';
 import cities from '../../mock/cities';
-import styles from '../FirstStep/FirstStep.module.css';
+import {
+  KeyboardArrowRight,
+  KeyboardArrowLeft
+} from '@material-ui/icons';
+import Button from '../../components/Button';
+import styles from './SecondStep.module.css';
+import connect from 'react-redux/es/connect/connect';
+import {setUserLocation} from '../../actions/setUser';
+import {fetchUser} from '../../actions/fetchUser';
 
 class SecondStep extends Component {
+  constructor(props) {
+    super(props);
+    props.fetchUser();
+  }
 
   state = {
     country: '',
@@ -25,7 +38,6 @@ class SecondStep extends Component {
       [name]: value
     });
     if(name === 'country') {
-      console.log(id);
       const filteredcities = this.filterCitiesByCountry(id);
       this.setState({
         citiesArray: filteredcities
@@ -40,20 +52,32 @@ class SecondStep extends Component {
       .map(city => city.name)
   );
 
-  toggleSelectCountryList = () => {
-    const {isCountryListVisible} = this.state;
-    this.setState({
-      isCountryListVisible: !isCountryListVisible
-    })
+  isValid = (country, city) => country && city;
+
+  submitFormHandler = () => {
+    const {country, city} = this.state;
+    const isValid = this.isValid(country, city);
+
+    if(isValid) {
+      this.props.setUserLocation(country, city);
+      this.props.handleComplete();
+    }
   };
 
   componentDidMount() {
+    const {user} = this.props;
     const countriesArray = Object.values(countries);
     this.setState({
       countriesArray: countriesArray
-    })
-  }
+    });
 
+    if(user.country && user.city){
+      this.setState({
+        country: user.country,
+        city: user.city
+      })
+    }
+  }
 
   render() {
 
@@ -68,7 +92,9 @@ class SecondStep extends Component {
 
     return (
       <div>
-        <p className={styles.label}>2. Выберите страну и город.</p>
+        <FormLabel
+          label="2. Выберите страну и город"
+        />
         <Select
           options={countriesArray}
           value={country}
@@ -77,7 +103,6 @@ class SecondStep extends Component {
           placeholder="Страна"
           isListVisible={isCountryListVisible}
           selectItem={this.selectItemFromList('country')}
-          toggleList={this.toggleSelectCountryList}
         />
         <Select
           options={citiesArray}
@@ -87,11 +112,35 @@ class SecondStep extends Component {
           placeholder="Город"
           isListVisible={isCityListVisible}
           selectItem={this.selectItemFromList('city')}
-          toggleList={this.toggleSelectCityList}
         />
+        <div className={styles.buttonsContainer}>
+          <Button
+            onClick={this.props.handleBack}
+            reverse
+          >
+            Предыдущий
+            <KeyboardArrowLeft/>
+          </Button>
+          <Button
+            onClick={this.submitFormHandler}
+          >
+            Следующий
+            <KeyboardArrowRight/>
+          </Button>
+        </div>
       </div>
     );
   }
 }
 
-export default SecondStep;
+const mapStateToProps = state => ({
+  user: state.user
+});
+
+export default connect(
+  mapStateToProps,
+  {
+    setUserLocation,
+    fetchUser
+  }
+)(SecondStep);

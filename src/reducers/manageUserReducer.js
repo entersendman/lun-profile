@@ -3,7 +3,6 @@ import * as ActionTypes from '../actionTypes';
 const initialState = {};
 
 export default (state = initialState, {type, payload}) => {
-  console.log('ACTION', type);
   switch (type) {
   case ActionTypes.SET_USER_NAME_EMAIL:
     return {
@@ -23,11 +22,16 @@ export default (state = initialState, {type, payload}) => {
       social: payload.social,
     };
   case ActionTypes.SET_USER_ANIMAL:
-    console.log(payload)
     return {
       ...state,
       animal: payload.animal
     };
+
+  case ActionTypes.FETCH_USER_DATA:
+    return state;
+
+  case ActionTypes.RESET_USER_DATA:
+    return initialState;
 
   default:
     return state

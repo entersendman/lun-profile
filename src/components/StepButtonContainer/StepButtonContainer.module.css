@@ -1,1 +1,9 @@
+.stepButtonContainer {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	background: transparent;
+	margin-bottom: 20px;
+}
 

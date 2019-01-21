@@ -12,7 +12,7 @@ const Input = ({onChange, value, validation, name, placeholder, type}) => {
         className={styles.input}
         placeholder={placeholder}
       />
-      {validation && (<span>{`-${validation}`}</span>)}
+      {validation && (<span className={styles.invalid}>{`-${validation}`}</span>)}
     </div>
   );
 };
