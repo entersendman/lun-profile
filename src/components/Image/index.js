@@ -6,6 +6,7 @@ const Image = ({source, selectedImage, onClick}) => {
   const activeImageStyle = activeImage
     ? ([styles.imageContainer, styles.active].join(' '))
     : styles.imageContainer;
+
   return (
     <div
       className={activeImageStyle}

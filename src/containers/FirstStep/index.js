@@ -75,6 +75,7 @@ class FirstStep extends Component {
 
   render() {
     const {error} = this.state;
+
     return (
       <div className={styles.firstStepContainer}>
         <FormLabel

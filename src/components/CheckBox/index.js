@@ -8,24 +8,22 @@ const CheckBox = ({
     onChangeHandler,
     label,
     checked
-  }) => {
-  return (
-    <div className={styles.checkboxContainer}>
-      <input
-        type="checkbox"
-        onChange={() => onChangeHandler(checked)}
-        value={value}
-        checked={checked}
-      />
-      <label
-        htmlFor="checkbox"
-        className={styles.checboxLabel}
-      >
-        {label}
-      </label>
-      {checked ? children : null}
-    </div>
-  );
-};
+  }) => (
+  <div className={styles.checkboxContainer}>
+    <input
+      type="checkbox"
+      onChange={() => onChangeHandler(checked)}
+      value={value}
+      checked={checked}
+    />
+    <label
+      htmlFor="checkbox"
+      className={styles.checboxLabel}
+    >
+      {label}
+    </label>
+    {checked ? children : null}
+  </div>
+);
 
 export default CheckBox;

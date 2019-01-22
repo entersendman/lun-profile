@@ -18,7 +18,7 @@ class ThirdStep extends Component {
     vkontakte: false,
     twitter: false,
     odnoklassniki: false,
-    facebookUrl: '' ,
+    facebookUrl: '',
     twitterUrl: '',
     vkontakteUrl: '',
     odnoklassnikiUrl: ''
@@ -68,7 +68,6 @@ class ThirdStep extends Component {
   };
 
   render() {
-
     const {
       facebook,
       vkontakte,

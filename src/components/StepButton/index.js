@@ -5,6 +5,7 @@ const StepButton = ({completed, onClick, label}) => {
   const completedStyle = completed
     ? [styles.stepButton, styles.completed].join(' ')
     : styles.stepButton;
+
   return (
     <div
       className={completedStyle}

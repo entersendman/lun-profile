@@ -37,7 +37,7 @@ class SecondStep extends Component {
     this.setState({
       [name]: value
     });
-    if(name === 'country') {
+    if (name === 'country') {
       const filteredcities = this.filterCitiesByCountry(id);
       this.setState({
         citiesArray: filteredcities
@@ -58,7 +58,7 @@ class SecondStep extends Component {
     const {country, city} = this.state;
     const isValid = this.isValid(country, city);
 
-    if(isValid) {
+    if (isValid) {
       this.props.setUserLocation(country, city);
       this.props.handleComplete();
     }
@@ -71,7 +71,7 @@ class SecondStep extends Component {
       countriesArray: countriesArray
     });
 
-    if(user.country && user.city){
+    if (user.country && user.city) {
       this.setState({
         country: user.country,
         city: user.city
@@ -80,7 +80,6 @@ class SecondStep extends Component {
   }
 
   render() {
-
     const {
       country,
       city,

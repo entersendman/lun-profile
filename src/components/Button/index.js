@@ -5,6 +5,7 @@ const Button = ({onClick, children, disabled, customStyle, reverse}) => {
   const reversedStyle = reverse
     ? [styles.button, styles.buttonReverse].join(' ')
     : styles.button;
+
   return (
     <div
       onClick={onClick}

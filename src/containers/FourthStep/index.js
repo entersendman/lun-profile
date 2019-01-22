@@ -44,7 +44,7 @@ class FourthStep extends Component {
     const {selectedImageURI} = this.state;
     const isValid = this.isValid();
 
-    if(isValid) {
+    if (isValid) {
       this.props.setUserAnimal(selectedImageURI);
       this.props.handleComplete();
     }

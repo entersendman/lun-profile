@@ -19,7 +19,13 @@ class Select extends Component {
     options.map((option, key) => (
       <li
         key={key}
-        onClick={() => this.props.selectItem(option, key + 1, this.toggleSelectList)}
+        onClick={
+          () => this.props.selectItem(
+            option,
+            key + 1,
+            this.toggleSelectList
+          )
+        }
         className={styles.selectListItem}
       >
         {option}
