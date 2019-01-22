@@ -7,20 +7,22 @@ import styles from './FinalCard.module.css';
 import Button from '../../components/Button';
 
 class FinalCard extends Component {
-
   constructor(props) {
     super(props);
     props.fetchUser();
   }
 
-  toUppercaser = (field) => field.charAt(0).toUpperCase() + field.slice(1);
+  toUppercaser = (field) =>
+    field.charAt(0).toUpperCase() + field.slice(1);
 
   getObjectKey = (obj) =>
-    Object.keys(obj)[0] ? this.toUppercaser(Object.keys(obj)[0])
+    Object.keys(obj)[0]
+      ? this.toUppercaser(Object.keys(obj)[0])
       : null;
 
   getObjectValue = (obj) =>
-    Object.values(obj)[0] ? Object.values(obj)[0]
+    Object.values(obj)[0]
+      ? Object.values(obj)[0]
       : null;
 
   renderSocialList = () => {
@@ -30,10 +32,15 @@ class FinalCard extends Component {
         .filter(item => Object.values(item)[0].length)
         .map(item =>
           <div
-            className={styles.listItem}
+            className={styles.socialContainer}
             key={item}
           >
-            {this.getObjectKey(item)} : {this.getObjectValue(item)}
+            <span className={styles.socialLabel}>
+              {this.getObjectKey(item)}:
+            </span>
+            <span className={styles.socialValue}>
+              {this.getObjectValue(item)}
+            </span>
           </div>
         )
     )
@@ -52,13 +59,19 @@ class FinalCard extends Component {
       <div>
         <div className={styles.cardContainer}>
           <div className={styles.userInfo}>
-            <div className={styles.listItem}>
+            <div className={
+              [styles.listItem, styles.nameField].join(' ')
+            }>
               {user.name}
             </div>
-            <div className={styles.listItem}>
+            <div className={
+              [styles.listItem, styles.emailField].join(' ')
+            }>
               {user.email}
             </div>
-            <div className={styles.listItem}>
+            <div className={
+              [styles.listItem, styles.locationField].join(' ')
+            }>
               {user.city}, {user.country}
             </div>
             {this.renderSocialList()}
@@ -67,12 +80,14 @@ class FinalCard extends Component {
             <Image source={user.animal}/>
           </div>
         </div>
-        <Button
-          onClick={this.repeatSteps}
-          customStyle={customStyle}
-        >
-          Пройти заново
-        </Button>
+        <div className={styles.buttonContainer}>
+          <Button
+            onClick={this.repeatSteps}
+            customStyle={customStyle}
+          >
+            Пройти заново
+          </Button>
+        </div>
       </div>
     );
   }

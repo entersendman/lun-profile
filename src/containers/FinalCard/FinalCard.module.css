@@ -20,6 +20,43 @@
 .listItem {
 	display: flex;
 	flex-direction: column;
+	font-family: Open Sans, sans-serif;
+}
+
+.nameField {
+	font-size: 20px;
+	color: #000;
+}
+
+.emailField {
+	font-size: 13px;
+	color: #aaa;
+}
+
+.locationField {
+	font-size: 15px;
+	color: #aaa;
+}
+
+.socialContainer {
+	display: flex;
+	flex-direction: row;
+	font-family: Open Sans, sans-serif;
+}
+
+.socialLabel {
+	color: blue;
+	margin-right: 5px;
+}
+
+.socialValue {
+	color: #aaa;
+}
+
+.buttonContainer {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
 }
 
 @media only screen and (max-width: 650px) {

@@ -1,0 +1,9 @@
+.firstStepContainer {
+	width: 550px;
+}
+
+@media only screen and (max-width: 550px) {
+	.firstStepContainer {
+		width: 100%;
+	}
+}

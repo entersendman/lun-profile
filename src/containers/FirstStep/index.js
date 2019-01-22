@@ -7,6 +7,7 @@ import {KeyboardArrowRight} from '@material-ui/icons';
 import {setUserNameEmail} from '../../actions/setUser';
 import {fetchUser} from '../../actions/fetchUser';
 import {validateEmail} from '../../utils';
+import styles from './FirstStep.module.css';
 
 class FirstStep extends Component {
   constructor(props) {
@@ -36,6 +37,7 @@ class FirstStep extends Component {
 
   getErrorText = (email) => {
     const isValid = validateEmail(email);
+
     if (!email.includes('@')) {
       this.setState({
         error: 'в адресе должен быть символ @'
@@ -53,17 +55,17 @@ class FirstStep extends Component {
 
   submitFormHandler = () => {
     const {name, email, error} = this.state;
+
     if (!error.length && name && email) {
       this.props.setUserNameEmail(name, email);
       this.props.handleComplete();
     }
   };
 
-
   componentDidMount() {
     const {user} = this.props;
 
-    if(user.name && user.email) {
+    if (user.name && user.email) {
       this.setState({
         name: user.name,
         email: user.email
@@ -74,7 +76,7 @@ class FirstStep extends Component {
   render() {
     const {error} = this.state;
     return (
-      <div>
+      <div className={styles.firstStepContainer}>
         <FormLabel
           label="1. Введите имя и e-mail"
         />

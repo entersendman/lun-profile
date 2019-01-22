@@ -17,7 +17,9 @@ const ImageList = ({selectedImage, isValid, onClick}) => (
     </div>
     {
       !isValid && selectedImage && (
-        <span className={styles.invalid}>Вы выбрали собачку. А надо котика</span>
+        <span className={styles.invalid}>
+          Вы выбрали собачку. А надо котика
+        </span>
       )
     }
   </div>

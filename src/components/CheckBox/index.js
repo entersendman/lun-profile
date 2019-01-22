@@ -8,7 +8,7 @@ const CheckBox = ({
     onChangeHandler,
     label,
     checked
-}) => {
+  }) => {
   return (
     <div className={styles.checkboxContainer}>
       <input

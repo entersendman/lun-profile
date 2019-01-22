@@ -6,12 +6,14 @@ import SecondStep from '../../containers/SecondStep';
 import ThirdStep from '../../containers/ThirdStep';
 import FourthStep from '../../containers/FourthStep';
 import FinalCard from '../../containers/FinalCard';
+import styles from './Stepper.module.css';
 
 const STEPS = ['1', '2', '3', '4'];
 
 const getSteps = () => STEPS;
 
 class Stepper extends React.Component {
+
   state = {
     activeStep: 0,
     completed: {},
@@ -69,6 +71,7 @@ class Stepper extends React.Component {
 
   handleStep = step => () => {
     const availableSteps = Object.values(this.state.completed);
+
     if (availableSteps[step]) {
       this.setState({
         activeStep: step,
@@ -99,12 +102,11 @@ class Stepper extends React.Component {
   allStepsCompleted = () => this.completedSteps() === this.totalSteps();
 
   render() {
-
     const steps = getSteps();
     const {activeStep, completed} = this.state;
 
     return (
-      <div>
+      <div className={styles.container}>
         {!this.allStepsCompleted() && (
           <StepButtomContainer
           >
