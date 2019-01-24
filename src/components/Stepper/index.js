@@ -8,9 +8,7 @@ import FourthStep from '../../containers/FourthStep';
 import FinalCard from '../../containers/FinalCard';
 import styles from './Stepper.module.css';
 
-const STEPS = ['1', '2', '3', '4'];
-
-const getSteps = () => STEPS;
+const getSteps = () => ['1', '2', '3', '4'];
 
 class Stepper extends React.Component {
 
@@ -116,8 +114,7 @@ class Stepper extends React.Component {
                 onClick={this.handleStep(index)}
                 completed={completed[index]}
                 label={label}
-              >
-              </StepButton>
+              />
             ))}
           </StepButtomContainer>
         )}
